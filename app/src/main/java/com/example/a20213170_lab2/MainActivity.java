@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Escogiste Verde", Toast.LENGTH_SHORT).show();
         }
         return true;
+        //Se empleo herramienta de chatgpt para la funcionalidad del indicador TOAST.makeText
     }
 
 
