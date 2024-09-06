@@ -28,6 +28,7 @@
         app:srcCompat="@drawable/antenna_logo" />
 
     <TextView
+        android:id="@+id/teleGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TeleGame"
@@ -50,6 +51,17 @@
         android:textAlignment="center"
         android:background="@drawable/edittext_borde_negro"
         />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="139dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="34dp"
+        android:text="Jugar"
+        android:textSize="25sp"/>
+
+
 
 
 </LinearLayout>
