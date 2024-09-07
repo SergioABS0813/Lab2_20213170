@@ -2,9 +2,13 @@ package com.example.a20213170_lab2;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,9 +19,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     TextView teleGameTextView;
+    EditText nameInput;
+    Button button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,38 @@ public class MainActivity extends AppCompatActivity {
 
         teleGameTextView = findViewById(R.id.teleGame); //R = recursos
         registerForContextMenu(teleGameTextView); //Registramos el textview como context menu
+        button = findViewById(R.id.button);
+        button.setOnClickListener(this);
+        button.setEnabled(false); //Para que el botón esté deshabilitado por default
+
+        nameInput = findViewById(R.id.nameInput);
+
+        nameInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(charSequence.toString().equals("")){
+                    button.setEnabled(false);
+                }
+                else{
+                    button.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                //No se coloca nada cuando este seteando solo nos importa el antes del cambio del texto y el después
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(editable.equals("")){
+                    button.setEnabled(false);
+                }else {
+                    button.setEnabled(true);
+                }
+
+            }
+        });
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -62,10 +101,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View view) {
 
-
-
-
-
-
+    }
 }
