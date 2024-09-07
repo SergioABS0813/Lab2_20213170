@@ -1,5 +1,6 @@
 package com.example.a20213170_lab2;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,11 +20,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    TextView teleGameTextView;
-    EditText nameInput;
-    Button button;
+    private TextView teleGameTextView;
+    private EditText nameInput;
+    private Button button;
 
 
     @Override
@@ -58,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(editable.equals("")){
+                if(editable.toString().equals("")){
                     button.setEnabled(false);
                 }else {
                     button.setEnabled(true);
@@ -103,6 +106,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        if(view.getId() == R.id.button){ //Cuando le damos clic a "JUGAR"
+
+            String[] listaPalabras = {"PROPA", "TELECO", "FIBRA", "REDES", "ANTENA", "CLOUD"};
+            String palabraEscogida = palabraAleatoria(listaPalabras);
+            Intent intent = new Intent(this, TeleGame.class); //Enviamos al usuario a la vista de TeleGame
+            intent.putExtra("palabra", palabraEscogida);
+            startActivity(intent);
+        }
 
     }
+
+
+    public String palabraAleatoria(String[] listaPalabras) {
+        Random random = new Random();
+        int numeroRandom = random.nextInt(listaPalabras.length); // Generamos un numero aleatorio de [0;longitud-1]
+        return listaPalabras[numeroRandom];  // Devuelve la palabra en esa posición (número Random)
+    }
+
+
 }
