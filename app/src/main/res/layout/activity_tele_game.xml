@@ -114,11 +114,13 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="Nuevo Juego"
-        android:textColor="@color/white"
         android:background="@drawable/black_buttom"
         android:onClick="onClickNewGame"
-        android:textSize="18sp"/>
+        android:text="Nuevo Juego"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+
 
 
 </LinearLayout>
