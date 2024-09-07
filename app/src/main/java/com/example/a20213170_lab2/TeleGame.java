@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,6 +31,7 @@ public class TeleGame extends AppCompatActivity {
     private ImageView[] partesHumano;
     private int cantidadpartes = 6;
     private int actualParte;
+    private Button newGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +41,12 @@ public class TeleGame extends AppCompatActivity {
 
         botonesLetras = findViewById(R.id.botonesLetras);
         gridView = findViewById(R.id.letters);
+        newGame = findViewById(R.id.newGame);
 
         jugarGame();
+
+
+
         partesHumano = new ImageView[cantidadpartes];
         partesHumano[0] = findViewById(R.id.head);
         partesHumano[1] = findViewById(R.id.body);
@@ -122,13 +128,14 @@ public class TeleGame extends AppCompatActivity {
                 builder.show();
 
             }
-        } else if (actualParte < cantidadpartes) {
+        } else if (actualParte < cantidadpartes-1) {
             //Usuario erra
             partesHumano[actualParte].setVisibility(View.VISIBLE);
             actualParte++;
 
         }else{
-            deshabilitarBotones();
+            partesHumano[actualParte].setVisibility(View.VISIBLE);
+            deshabilitarBotones(); //Falta logica cuano actualParte = 6
             //Usuario ya perdió
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Perdiste");
@@ -142,7 +149,7 @@ public class TeleGame extends AppCompatActivity {
             builder.setPositiveButton("Salir", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    TeleGame.this.jugarGame();
+                    TeleGame.this.finish();
                 }
             });
             builder.show();
@@ -155,5 +162,13 @@ public class TeleGame extends AppCompatActivity {
         for(int i = 0; i < gridView.getChildCount();i++){
             gridView.getChildAt(i).setEnabled(false);
         }
+    }
+
+
+    public void onClickNewGame(View view) {
+        if(view.getId() == R.id.newGame){ //Cuando le damos clic a "Nuevo Juego"
+            recreate();
+        }
+
     }
 }
