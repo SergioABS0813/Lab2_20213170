@@ -54,8 +54,12 @@ public class TeleGame extends AppCompatActivity {
         botonesLetras = findViewById(R.id.botonesLetras);
         gridView = findViewById(R.id.letters);
         newGame = findViewById(R.id.newGame);
+        if (savedInstanceState != null) {
+            tiemposString = savedInstanceState.getStringArrayList("tiemposString");
+        } else {
+            tiemposString = new ArrayList<>();
+        }
         tiempoInicio = System.currentTimeMillis();
-        tiemposString = new ArrayList<>();
         jugarGame();
         partesHumano = new ImageView[cantidadpartes];
         partesHumano[0] = findViewById(R.id.head);
@@ -213,6 +217,12 @@ public class TeleGame extends AppCompatActivity {
         }
         return true;
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putStringArrayList("tiemposString", new ArrayList<>(tiemposString));
     }
 
 }
