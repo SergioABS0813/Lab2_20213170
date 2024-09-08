@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -186,6 +187,7 @@ public class TeleGame extends AppCompatActivity {
 
     public void onClickNewGame(View view) {
         if(view.getId() == R.id.newGame){ //Cuando le damos clic a "Nuevo Juego"
+            tiemposString.add("Canceló"); //Se agrega el canceló
             recreate(); //Refresca la actividad si le damos clic a Nuevo Juego
         }
 
@@ -203,6 +205,7 @@ public class TeleGame extends AppCompatActivity {
         if(item.getItemId() == R.id.estadisticas){
             Bundle historialbundle = new Bundle();
             historialbundle.putStringArrayList("historial", (ArrayList<String>) tiemposString);
+            System.out.println(tiemposString.size());
             Intent intent = new Intent(this, StatsActivity.class);
             intent.putExtras(historialbundle);
             startActivity(intent);
