@@ -110,8 +110,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             String[] listaPalabras = {"PROPA", "TELECO", "FIBRA", "REDES", "ANTENA", "CLOUD"};
             String palabraEscogida = palabraAleatoria(listaPalabras);
+            String nombreUsuario = nameInput.getText().toString();
             Intent intent = new Intent(this, TeleGame.class); //Enviamos al usuario a la vista de TeleGame
             intent.putExtra("palabra", palabraEscogida);
+            intent.putExtra("nombreUsuario",nombreUsuario);
             startActivity(intent);
         }
 

@@ -45,6 +45,7 @@ public class TeleGame extends AppCompatActivity {
     private long tiempoFin;
     //Lista para guardar los tiempos
     private List<String> tiemposString;
+    private String nombreUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +69,9 @@ public class TeleGame extends AppCompatActivity {
         partesHumano[3] = findViewById(R.id.brazoIzq);
         partesHumano[4] = findViewById(R.id.piernaIzq);
         partesHumano[5] = findViewById(R.id.piernaDere);
+
+        Intent intent = getIntent();
+        nombreUsuario = intent.getStringExtra("nombreUsuario");
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -212,6 +216,7 @@ public class TeleGame extends AppCompatActivity {
             System.out.println(tiemposString.size());
             Intent intent = new Intent(this, StatsActivity.class);
             intent.putExtras(historialbundle);
+            intent.putExtra("nombreUsuario", nombreUsuario);
             startActivity(intent);
 
         }
@@ -223,6 +228,6 @@ public class TeleGame extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putStringArrayList("tiemposString", new ArrayList<>(tiemposString));
-    }
+    }//Se usó ChatGPT para poder entender y utilizar la funcion onSaveInstanceState para guardar los segundos en el arreglo tiemposString ya que sino no guardaba los datos
 
 }
